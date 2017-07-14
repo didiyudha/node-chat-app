@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
     // io.emit will send message to the clients that connected
     io.emit('newMessage', generateMessage(message.from, message.text));
     // acknowledgement from server
-    callback('This is from server');
+    callback();
   });
 
   // Server receive message location from client
