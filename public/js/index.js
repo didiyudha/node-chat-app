@@ -13,15 +13,17 @@ socket.on('disconnect', function () {
 // Client receive message from server
 // client print the message and binding it int <ul> component
 socket.on('newMessage', function (message) {
+  var formattedTime = moment(message.createdAt).format('h:mm a');
   var li = jQuery('<li></li>');
-  li.text(`${message.from}-${message.text}`);
+  li.text(`${message.from} ${formattedTime} : ${message.text}`);
   jQuery('#messages').append(li);
 });
 
 socket.on('newLocationMessage', function(locationMessage) {
+  var fromattedTime = moment(locationMessage.createdAt).format('h:mm a');
   var li = jQuery('<li></li>');
   var a = jQuery('<a target="_blank">My Current Location</a>');
-  li.text(`${locationMessage.from}: `);
+  li.text(`${locationMessage.from} ${fromattedTime}: `);
   a.attr('href', locationMessage.url);
   li.append(a);
   jQuery('#messages').append(li);
